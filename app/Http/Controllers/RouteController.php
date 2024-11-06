@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Route;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -11,7 +12,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $routes = Route::all();
+        return view('routes.index', compact('routes'));
     }
 
     /**
@@ -19,7 +21,7 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        return view('routes.create');
     }
 
     /**
@@ -27,7 +29,14 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'pickup_location' => 'required|string|max:255',
+            'dropoff_location' => 'required|string|max:255',
+            'schedule_time' => 'required|date',
+            'status' => 'required|string|max:255'
+        ]);
+        Route::create($validated);
+        return redirect()->route('routes.index')->with('success', 'Route created successfully');
     }
 
     /**
@@ -35,7 +44,8 @@ class RouteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $route = Route::findOrFail($id);
+        return view('routes.edit', compact('route'));
     }
 
     /**
