@@ -33,7 +33,14 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'route_id' => 'required|exists:routes,id',
+        'status' => 'required|string|max:50',
+        'seat_count' => 'required|integer|min:1',
+        ]);
+        Booking::create($validated);
+        return redirect()->route('bookings.index')->with('success', 'Booking created successfully');
     }
 
     /**
@@ -49,7 +56,10 @@ class BookingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $routes = Route::all();
+        $users = User::all();
+        return view('bookigns.edit', compact('booking', 'routes', 'users'));
     }
 
     /**
@@ -57,7 +67,15 @@ class BookingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'route_id' => 'required|exists:routes,id',
+        'status' => 'required|string|max:50',
+        'seat_count' => 'required|integer|min:1',
+        ]);
+        $booking = Booking::findOrFail($id);
+        $booking->update($validated);
+        return redirect()->route('bookings.index')->with('success', 'Booking updated successfully');
     }
 
     /**
