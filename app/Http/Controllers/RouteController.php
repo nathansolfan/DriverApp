@@ -51,9 +51,9 @@ class RouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
-        //
+        $route = Route::findOrFail
     }
 
     /**
@@ -61,14 +61,25 @@ class RouteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'pickup_location' => 'required|string|max:255',
+            'dropoff_location' => 'required|string|max:255',
+            'schedule_time' => 'required|date',
+            'status' => 'required|string|max:255'
+        ]);
+        $route = Route::findOrFail($id);
+        $route->update($validated);
+        return redirect()->route('routes.index')->with('success', 'Route updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( string $id)
     {
-        //
+        $route = Route::findOrFail($id);
+        $route->delete();
+        return redirect()->route('routes.index')->with('success', 'Route deleted with success');
+
     }
 }
