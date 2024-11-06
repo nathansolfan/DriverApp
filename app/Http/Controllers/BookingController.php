@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Route;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -11,7 +14,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::with(['user', 'route'])->get();
+        return view('bookings.index', compact('bookings'));
     }
 
     /**
@@ -19,7 +23,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $routes = Route::all();
+        $users = User::all();
+        return view('bookings.create', compact('routes', 'users'));
     }
 
     /**

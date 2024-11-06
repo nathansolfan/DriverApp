@@ -44,16 +44,16 @@ class RouteController extends Controller
      */
     public function show(string $id)
     {
-        $route = Route::findOrFail($id);
-        return view('routes.edit', compact('route'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, string $id)
+    public function edit(string $id)
     {
-        $route = Route::findOrFail
+        $route = Route::findOrFail($id);
+        return view('routes.edit', compact('route'));
     }
 
     /**
