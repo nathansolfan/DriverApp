@@ -16,6 +16,7 @@
             <form action=" {{route('bookings.destroy', $booking->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
+                <button type="submit">Delete</button>
             </form>
         </li>
         @endforeach
