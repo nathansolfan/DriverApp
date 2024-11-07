@@ -35,8 +35,8 @@ class RouteNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('A new route has been created or updated')
+                    ->action('View Route', url('/routes'))
                     ->line('Thank you for using our application!');
     }
 
