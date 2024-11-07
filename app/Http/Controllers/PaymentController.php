@@ -83,6 +83,6 @@ class PaymentController extends Controller
     {
         $payment = Payment::findOrFail($id);
         $payment->delete();
-        return redirect()->route()->with('success', 'Payment deleted successfully');
+        return redirect()->route('payments.index')->with('success', 'Payment deleted successfully');
     }
 }
