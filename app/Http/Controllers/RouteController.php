@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Route;
+use App\Notifications\RouteNotification;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -35,7 +36,8 @@ class RouteController extends Controller
             'schedule_time' => 'required|date',
             'status' => 'required|string|max:255'
         ]);
-        Route::create($validated);
+        $route = Route::create($validated);
+        $route->notify(new RouteNotification());
         return redirect()->route('routes.index')->with('success', 'Route created successfully');
     }
 
