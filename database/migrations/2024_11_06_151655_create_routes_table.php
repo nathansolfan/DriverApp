@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
+            $table->string('pickup_location');
+            $table->string('dropoff_location');
+            $table->dateTime('schedule_time');
+            $table->string('status');
             $table->timestamps();
         });
     }
