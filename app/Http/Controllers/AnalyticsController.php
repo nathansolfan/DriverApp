@@ -13,7 +13,7 @@ class AnalyticsController extends Controller
         // Get total number of routes - count() built in php function
         $totalRoutes = Route::count();
 
-        // Get total number of bookings
+        // Get total number of bookings > Eloquent ORM
         $bookingsPerRoute = Route::withCount('bookings')->get();
 
         // get total paymentss
