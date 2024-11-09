@@ -59,7 +59,7 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($id);
         $routes = Route::all();
         $users = User::all();
-        return view('bookigns.edit', compact('booking', 'routes', 'users'));
+        return view('bookings.edit', compact('booking', 'routes', 'users'));
     }
 
     /**
