@@ -17,8 +17,6 @@ class Payment extends Model
     ];
 
 
-
-
     // relationship: a payment belongs to a booking
     public function booking()
     {

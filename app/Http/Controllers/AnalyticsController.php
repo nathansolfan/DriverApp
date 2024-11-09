@@ -18,6 +18,7 @@ class AnalyticsController extends Controller
 
         // get total paymentss
         $totalPayments = Payment::sum('amount');
-        return view('analytics.index', compact('totalRoutes', 'bookingsPerRoute'));
+
+        return view('analytics.index', compact('totalRoutes', 'bookingsPerRoute', 'totalPayments'));
     }
 }
