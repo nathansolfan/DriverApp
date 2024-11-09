@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RouteController;
@@ -13,3 +14,6 @@ Route::get('/', function () {
 Route::resource('routes', RouteController::class);
 Route::resource('bookings', BookingController::class);
 Route::resource('payments', PaymentController::class);
+
+// Analytics Route
+Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
