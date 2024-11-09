@@ -23,6 +23,8 @@
     <a href=" {{route('bookings.index')}} ">Go to Bookings</a>
     <br>
     <a href=" {{route('payments.index')}} ">Go to Payments</a>
+    <br>
+    <a href=" {{route('analytics.index')}} ">Go to analytics</a>
     <ul>
         @foreach ($routes as $route )
         <li>{{ $route->pickup_location}} to {{ $route->dropoff_location}}
