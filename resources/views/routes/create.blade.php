@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Create a New Route</h1>
-    <a href=" {{route('bookings.index')}} ">Go to Bookings</a>
+
     <form action="{{ route('routes.store') }}" method="POST">
         @csrf
         <div>
