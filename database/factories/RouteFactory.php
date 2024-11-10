@@ -17,7 +17,10 @@ class RouteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'pickup_location' => $this->faker->city(),
+            'dropoff_location' => $this->faker->city(),
+            'schedule_time' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
+            'status' => $this->faker->randomElement(['Schedule', 'Completed', 'Cancelled']),
         ];
     }
 }

@@ -14,6 +14,5 @@ class RouteSeeder extends Seeder
     public function run(): void
     {
         Route::factory()->count(10)->create();
-
     }
 }
