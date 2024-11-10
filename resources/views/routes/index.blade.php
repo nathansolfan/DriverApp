@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite('resources/css/app.css')
     <title>Routes</title>
 </head>
 <body>
     <h1>Routes</h1>
+    <h1 class="text-3xl font-bold underline">
+        Hello world!
+      </h1>
 
     @if (session('success'))
     <p style="color:green"> {{session('success')}} </p>
