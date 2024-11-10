@@ -11,6 +11,21 @@
     <div class="container mt-5">
         <h1>Analytics Dashboard</h1>
 
+        <!-- Time Frame Filter Form -->
+        <form action="GET" action=" {{route('analytics.index')}} " class="mb-4">
+            <label for="time_frame">Time Frame:</label>
+            <select name="time_frame" id="time_frame" onchange="this.form.submit()">
+                <option value="current_month" {{$timeFrame == 'current_month' ? 'selected' : ''}} >Current Month</option>
+                <option value="last_month" {{$timeFrame == 'last_month' ? 'selected' : ''}} >Last Month</option>
+                <option value="all_time" {{$timeFrame == 'all_time' ? 'selected' : ''}} >All Time</option>
+
+
+            </select>
+
+        </form>
+
+
+
         <div class="row my-4">
             <div class="col-md-4">
                 <div class="card text-white bg-info mb-3">
@@ -38,7 +53,7 @@
             </div>
         </div>
 
-        <h2>Total Number of Routes</h2>
+        <h2>Total Number of Routes <small data-bs-toggle="tooltip" title="This chart shows the total payments received by the system.">ℹ️</small> </h2>
         <canvas id="totalRoutesChart"></canvas>
 
         <h2>Number of Bookings Per Route</h2>
@@ -120,6 +135,8 @@
                 }
             }
         });
+
+
     </script>
 </body>
 </html>
