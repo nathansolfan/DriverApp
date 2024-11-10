@@ -4,19 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Analytics Dashboard</h1>
+    <div class="container mt-5">
+        <h1>Analytics Dashboard</h1>
 
-    <h2>Total Number of Routes</h2>
-    <canvas id="totalRoutesChart"></canvas>
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Routes</h5>
+                        <p class="card-text">{{ $totalRoutes }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Bookings</h5>
+                        <p class="card-text">{{ $bookingsPerRoute->sum('bookings_count') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Payments Received</h5>
+                        <p class="card-text">${{ number_format($totalPayments, 2) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>Number of Bookings Per Route</h2>
-    <canvas id="bookingsPerRouteChart"></canvas>
+        <h2>Total Number of Routes</h2>
+        <canvas id="totalRoutesChart"></canvas>
 
-    <h2>Total Payments Received</h2>
-    <canvas id="totalPaymentsChart"></canvas>
+        <h2>Number of Bookings Per Route</h2>
+        <canvas id="bookingsPerRouteChart"></canvas>
+
+        <h2>Total Payments Received</h2>
+        <canvas id="totalPaymentsChart"></canvas>
+
+    </div>
 
     <script>
         // Total Number of Routes
