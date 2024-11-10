@@ -12,7 +12,7 @@
         <h1>Analytics Dashboard</h1>
 
         <!-- Time Frame Filter Form -->
-        <form action="GET" action=" {{route('analytics.index')}} " class="mb-4">
+        <form method="GET" action="{{ route('analytics.index') }}" class="mb-4">
             <label for="time_frame">Time Frame:</label>
             <select name="time_frame" id="time_frame" onchange="this.form.submit()">
                 <option value="current_month" {{$timeFrame == 'current_month' ? 'selected' : ''}} >Current Month</option>
