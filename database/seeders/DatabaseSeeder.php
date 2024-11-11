@@ -13,21 +13,33 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+    // Consistent Relationship: Bookings are directly related to routes.
+
     public function run(): void
     {
-        // Create 5 Users
+        // Create Users
         User::factory(5)->create();
 
-        // Create 5 Routes
-        Route::factory(5)->create();
+        // Create Routes
+        $routes = Route::factory(5)->create();
 
-        // Create 20 Bookings
-        Booking::factory(20)->create();
+        // Create Bookings for Routes
+        $routes->each(function ($route) {
+            Booking::factory(3)->create([ // Create 3 bookings per route
+                'route_id' => $route->id,
+                'user_id' => User::inRandomOrder()->first()->id,
+            ]);
+        });
 
-        // Create 15 Payments
-        Payment::factory(15)->create();
+        // Create Payments for Confirmed Bookings
+        Booking::where('status', 'pending')->get()->each(function ($booking) {
+            Payment::factory()->create([
+                'booking_id' => $booking->id,
+                'status' => 'completed',
+            ]);
+        });
 
-        // Create a test user
+        // Create a Test User
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',

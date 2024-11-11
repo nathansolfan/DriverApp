@@ -16,7 +16,7 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'booking_id' => Booking::inRandomOrder()->first()->id, // Automatically assign a booking
+            'booking_id' => Booking::inRandomOrder()->first()->id, // Assign a booking at random
             'amount' => $this->faker->randomFloat(2, 50, 200),
             'status' => $this->faker->randomElement(['pending', 'completed']),
             'payment_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
