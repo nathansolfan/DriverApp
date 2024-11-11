@@ -14,6 +14,7 @@
         <a href="{{ route('bookings.create') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Create Booking
         </a>
+        <a href=" {{ route('routes.index')}} " class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to routes</a>
 
         <ul class="space-y-4">
             @foreach ($bookings as $booking)
