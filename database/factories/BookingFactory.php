@@ -21,7 +21,8 @@ class BookingFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'route_id' => Route::inRandomOrder()->first()->id,
-            'status' => $this->faker->randomElement(['Pending', 'Confirmed', 'Cancelled']),
+            'status' => 'confirmed',
+            // 'status' => $this->faker->randomElement(['Pending', 'Confirmed', 'Cancelled']),
             'seat_count' => $this->faker->numberBetween(1,4),
         ];
     }

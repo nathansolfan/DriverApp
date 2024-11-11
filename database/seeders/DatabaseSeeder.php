@@ -6,7 +6,6 @@ use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Route;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,17 +18,25 @@ class DatabaseSeeder extends Seeder
         // Create 5 Users
         User::factory(5)->create();
 
-        // Create 10 Routes
-        Route::factory(10)->create();
+        // Create 5 Routes
+        $routes = Route::factory(5)->create();
 
-        // Create 20 bookings associated with users and routes
-        Booking::factory(20)->create();
+        // Create 1 booking per route
+        $routes->each(function ($route) {
+            Booking::factory()->create([
+                'route_id' => $route->id,
+                'user_id' => User::inRandomOrder()->first()->id,
+            ]);
+        });
 
-        // Create 15payments associated with bookings
-        Payment::factory(15)->create();
+        // Create 1 payment per booking
+        Booking::all()->each(function ($booking) {
+            Payment::factory()->create([
+                'booking_id' => $booking->id,
+            ]);
+        });
 
-
-        // User::factory(10)->create();
+        // Create a test user
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
