@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Route;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder()->first()->id,
+            'route_id' => Route::inRandomOrder()->first()->id,
+            'status' => $this->faker->randomElement(['Pending', 'Confirmed', 'Cancelled']),
+            'seat_count' => $this->faker->numberBetween(1,4),
         ];
     }
 }
