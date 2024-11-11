@@ -19,22 +19,13 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
 
         // Create 5 Routes
-        $routes = Route::factory(5)->create();
+        Route::factory(5)->create();
 
-        // Create 1 booking per route
-        $routes->each(function ($route) {
-            Booking::factory()->create([
-                'route_id' => $route->id,
-                'user_id' => User::inRandomOrder()->first()->id,
-            ]);
-        });
+        // Create 20 Bookings
+        Booking::factory(20)->create();
 
-        // Create 1 payment per booking
-        Booking::all()->each(function ($booking) {
-            Payment::factory()->create([
-                'booking_id' => $booking->id,
-            ]);
-        });
+        // Create 15 Payments
+        Payment::factory(15)->create();
 
         // Create a test user
         User::factory()->create([

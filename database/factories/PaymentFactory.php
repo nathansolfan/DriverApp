@@ -2,25 +2,24 @@
 
 namespace Database\Factories;
 
-use App\Models\Route;
+use App\Models\Booking;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Payment>
- */
 class PaymentFactory extends Factory
 {
+    protected $model = Payment::class;
+
     /**
      * Define the model's default state.
-     *
-     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            'route_id' => Route::inRandomOrder()->first()->id,
-            'amount' => $this->faker->randomFloat(2,10,200),
-
+            'booking_id' => Booking::inRandomOrder()->first()->id, // Automatically assign a booking
+            'amount' => $this->faker->randomFloat(2, 50, 200),
+            'status' => $this->faker->randomElement(['pending', 'completed']),
+            'payment_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
         ];
     }
 }
