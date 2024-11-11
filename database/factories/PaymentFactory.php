@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Route;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'route_id' => Route::inRandomOrder()->first()->id,
+            'amount' => $this->faker->randomFloat(2,10,200),
+
         ];
     }
 }
