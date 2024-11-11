@@ -23,12 +23,14 @@ class DatabaseSeeder extends Seeder
         // Create Routes
         $routes = Route::factory(5)->create();
 
-        // Create Bookings for Routes
-        $routes->each(function ($route) {
-            Booking::factory(3)->create([ // Create 3 bookings per route
-                'route_id' => $route->id,
-                'user_id' => User::inRandomOrder()->first()->id,
-            ]);
+        // Create Bookings for each User
+        User::all()->each(function ($user) {
+            Route::inRandomOrder()->take(2)->get()->each(function ($route) use ($user) {
+                Booking::factory()->create([
+                    'user_id' => $user->id,
+                    'route_id' => $route->id,
+                ]);
+            });
         });
 
         // Create Payments for Confirmed Bookings

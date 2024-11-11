@@ -16,6 +16,7 @@ class BookingFactory extends Factory
      */
     public function definition(): array
     {
+        // booking is created by randomly picking a user and a route - single user can end up being assigned to multiple bookings
         return [
             'user_id' => User::inRandomOrder()->first()->id, // Assign a user at random
             'route_id' => Route::inRandomOrder()->first()->id, // Assign a route at random
