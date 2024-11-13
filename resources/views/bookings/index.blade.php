@@ -10,7 +10,9 @@
 <body class="bg-gray-100 min-h-screen p-8">
 
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <a href="{{route('routes.index')}} " class="text-2xl font-bold mb-6">Link to route</a>
         <h1 class="text-2xl font-bold mb-6">Bookings</h1>
+
 
         <!-- Search Form -->
         <form method="GET" action="{{ route('bookings.index') }}" class="flex items-center mb-4 space-x-4">
