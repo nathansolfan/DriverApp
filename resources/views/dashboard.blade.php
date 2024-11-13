@@ -32,6 +32,9 @@
                 <p class="text-3xl">${{ number_format($totalPayments, 2) }}</p>
             </a>
 
+            <a href="{{ route('bookings.calendar') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">View Booking Calendar</a>
+
+
         </div>
     </div>
 
