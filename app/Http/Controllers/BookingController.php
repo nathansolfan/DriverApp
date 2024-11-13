@@ -14,8 +14,12 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with(['user', 'route'])->get();
-        return view('bookings.index', compact('bookings'));
+        // FETCH ALL
+        // $bookings = Booking::with(['user', 'route'])->get();
+        // return view('bookings.index', compact('bookings'));
+
+        $search = $request->input('search');
+        $filterStatus = $request->input('status');
     }
 
     /**

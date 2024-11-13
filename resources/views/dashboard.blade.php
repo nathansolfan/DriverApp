@@ -17,7 +17,7 @@
             <!-- Total Routes Card -->
             <a href="{{ route('routes.index') }}" class="bg-blue-600 text-white p-6 rounded-lg shadow-md flex flex-col items-center transition transform hover:scale-105">
                 <h2 class="text-xl font-bold mb-4">Total Routes</h2>
-                <p class="text-3xl">{{ $totalRoutes }}</p>
+                <p class="text-3xl">{{ $totalRoutes }} Routes</p>
             </a>
 
             <!-- Total Bookings Card -->
