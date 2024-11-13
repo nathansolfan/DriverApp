@@ -29,6 +29,15 @@ class BookingController extends Controller
                 $q->where('name', 'LIKE', "%{$search}%");
             });
         }
+
+        if ($filterStatus) {
+            $query->where('status', $filterStatus);
+        }
+
+        // FETCH Bookings
+        $bookings = $query->with(['user', 'route'])->get();
+
+        return view('bookings.index', compact('bookings', 'search', 'filteredStatus'));
     }
 
     /**
