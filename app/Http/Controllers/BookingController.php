@@ -37,7 +37,7 @@ class BookingController extends Controller
         // FETCH Bookings
         $bookings = $query->with(['user', 'route'])->get();
 
-        return view('bookings.index', compact('bookings', 'search', 'filteredStatus'));
+        return view('bookings.index', compact('bookings', 'search', 'filterStatus'));
     }
 
     /**

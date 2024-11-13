@@ -7,33 +7,49 @@
     @vite('resources/css/app.css')
     <title>Bookings</title>
 </head>
-<body class="bg-gray-100 p-10">
-    <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold mb-4">Bookings</h1>
+<body class="bg-gray-100 min-h-screen p-8">
 
-        <a href="{{ route('bookings.create') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Create Booking
-        </a>
-        <a href=" {{ route('routes.index')}} " class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to routes</a>
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-6">Bookings</h1>
 
+        <!-- Search Form -->
+        <form method="GET" action="{{ route('bookings.index') }}" class="flex items-center mb-4 space-x-4">
+            <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by user name"
+                class="border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300">
+
+            <select name="status" class="border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                <option value="">Filter by Status</option>
+                <option value="pending" {{ $filterStatus == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="confirmed" {{ $filterStatus == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
+                <option value="cancelled" {{ $filterStatus == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+            </select>
+
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Search</button>
+        </form>
+
+        <!-- Bookings List -->
         <ul class="space-y-4">
-            @foreach ($bookings as $booking)
-                <li class="p-4 bg-white rounded-lg shadow-md">
-                    <p class="mb-2">
-                        <strong>User:</strong> {{ $booking->user->name }},
-                        <strong>Route:</strong> {{ $booking->route->pickup_location }} to {{ $booking->route->dropoff_location }}
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="{{ route('bookings.edit', $booking->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-4 rounded">Edit</a>
+            @forelse ($bookings as $booking)
+                <li class="bg-gray-200 p-4 rounded-md shadow-sm flex justify-between items-center">
+                    <div>
+                        <p><strong>User:</strong> {{ $booking->user->name }}</p>
+                        <p><strong>Route:</strong> {{ $booking->route->pickup_location }} to {{ $booking->route->dropoff_location }}</p>
+                        <p><strong>Status:</strong> {{ ucfirst($booking->status) }}</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{{ route('bookings.edit', $booking->id) }}" class="bg-green-600 text-white px-4 py-2 rounded-md">Edit</a>
                         <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded">Delete</button>
+                            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-md">Delete</button>
                         </form>
                     </div>
                 </li>
-            @endforeach
+            @empty
+                <li class="text-gray-500">No bookings found</li>
+            @endforelse
         </ul>
     </div>
+
 </body>
 </html>
