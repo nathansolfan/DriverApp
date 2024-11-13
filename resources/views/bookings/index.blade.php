@@ -10,7 +10,15 @@
 <body class="bg-gray-100 min-h-screen p-8">
 
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <a href="{{route('routes.index')}} " class="text-2xl font-bold mb-6">Link to route</a>
+        <div class="flex justify-between mb-6">
+            <a href="{{ route('routes.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                Back to Routes
+            </a>
+            <a href="{{ route('bookings.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                Create Booking
+            </a>
+        </div>
+
         <h1 class="text-2xl font-bold mb-6">Bookings</h1>
 
 
