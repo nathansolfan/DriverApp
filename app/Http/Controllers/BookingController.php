@@ -12,7 +12,7 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // FETCH ALL
         // $bookings = Booking::with(['user', 'route'])->get();
@@ -20,6 +20,15 @@ class BookingController extends Controller
 
         $search = $request->input('search');
         $filterStatus = $request->input('status');
+
+        // Query for bookings
+        $query = Booking::query();
+
+        if ($search) {
+            $query->whereHas('user', function ( $q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%");
+            });
+        }
     }
 
     /**
