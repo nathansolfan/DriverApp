@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    // CALENDAR VIEW
+    public function calendar()
+    {
+        $bookings = Booking::with(['user', 'route'])->get();
+        return view('calendar', compact('bookings'));
+    }
+
+
     /**
      * Display a listing of the resource.
      */
