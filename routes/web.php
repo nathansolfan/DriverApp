@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // });
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
+// Route::get('/', [DashboardController::class, 'index']);
 
 // Define resource routes for routes, bookings, and payments
 Route::resource('routes', RouteController::class);
