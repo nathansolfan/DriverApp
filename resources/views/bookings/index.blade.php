@@ -11,15 +11,8 @@
 
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
-        <!-- Breadcrumbs -->
-        <nav class="text-sm font-medium mb-4">
-            {{ Breadcrumbs::render('bookings.index') }}
-        </nav>
-
-
-
-
-
+         <!-- Breadcrumbs -->
+         @include('components.breadcrumbs', ['breadcrumbs' => Breadcrumbs::generate('bookings.index')])
 
 
         <div class="flex justify-between mb-6">

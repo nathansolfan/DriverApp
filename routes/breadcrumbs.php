@@ -20,6 +20,13 @@ Breadcrumbs::for('bookings.index', function (BreadcrumbTrail $trail) {
     $trail->push('Bookings', route('bookings.index'));
 });
 
+// Booking Create
+Breadcrumbs::for('bookings.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('bookings.index');
+    $trail->push('Create Booking', route('bookings.create'));
+});
+
+
 // Payments Index
 Breadcrumbs::for('payments.index', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
