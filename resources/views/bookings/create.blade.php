@@ -8,12 +8,15 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-    <!-- Breadcrumbs -->
-<nav class="text-sm font-medium mb-4">
-    @include('components.breadcrumbs', ['breadcrumbs' => Breadcrumbs::generate()])
-</nav>
+
 
     <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
+
+        <!-- Breadcrumbs -->
+        <nav class="text-sm font-medium mb-4">
+            @include('components.breadcrumbs', ['breadcrumbs' => Breadcrumbs::generate()])
+        </nav>
+
         <h1 class="text-2xl font-bold mb-6 text-center">Create a New Booking</h1>
 
         <!-- Success and Error Flash Messages -->
