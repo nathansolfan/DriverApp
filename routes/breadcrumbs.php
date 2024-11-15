@@ -38,3 +38,10 @@ Breadcrumbs::for('bookings.edit', function (BreadcrumbTrail $trail, $booking) {
     $trail->parent('bookings.index');
     $trail->push('Edit Booking', route('bookings.edit', $booking));
 });
+
+
+// Calendar View
+Breadcrumbs::for('bookings.calendar', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Booking Calendar', route('bookings.calendar'));
+});
