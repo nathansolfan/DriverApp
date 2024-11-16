@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentController;
@@ -30,5 +31,6 @@ Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics
 Route::get('/calendar', [BookingController::class, 'calendar'])->name('bookings.calendar');
 
 // CUSTOMER REGISTRATION ROUTE
-Route::get('/register', );
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
