@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // R E G I S T E R
+
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -31,5 +33,12 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route('dashboard')->with('success', 'User created');
+    }
+
+    // L O G I N
+
+    public function showLoginForm()
+    {
+
     }
 }
