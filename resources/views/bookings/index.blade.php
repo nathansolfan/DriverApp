@@ -14,7 +14,6 @@
          <!-- Breadcrumbs -->
          @include('components.breadcrumbs', ['breadcrumbs' => Breadcrumbs::generate('bookings.index')])
 
-
         <div class="flex justify-between mb-6">
             <a href="{{ route('routes.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
                 Back to Routes
@@ -22,6 +21,10 @@
             <a href="{{ route('bookings.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                 Create Booking
             </a>
+
+            <button onclick="window.print()" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
+                Print to PDF
+            </button>
         </div>
 
         <h1 class="text-2xl font-bold mb-6">Bookings</h1>
