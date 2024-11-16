@@ -28,3 +28,7 @@ Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics
 // Calendar Route
 
 Route::get('/calendar', [BookingController::class, 'calendar'])->name('bookings.calendar');
+
+// CUSTOMER REGISTRATION ROUTE
+Route::get('/register', );
+
