@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // R E G I S T E R
-
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -36,7 +35,6 @@ class AuthController extends Controller
     }
 
     // L O G I N
-
     public function showLoginForm()
     {
         return view('auth.login');
