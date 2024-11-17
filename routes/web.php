@@ -34,3 +34,4 @@ Route::get('/calendar', [BookingController::class, 'calendar'])->name('bookings.
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
