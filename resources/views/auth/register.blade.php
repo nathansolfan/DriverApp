@@ -25,6 +25,8 @@
             <input type="password" id="password_confirmation" name="password_confirmation" required>
         </div>
         <button type="submit">Register</button>
+        <button type="submit">Register</button>
+
     </form>
 </body>
 </html>
