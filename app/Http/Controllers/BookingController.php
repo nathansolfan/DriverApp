@@ -51,6 +51,13 @@ class BookingController extends Controller
         return view('bookings.index', compact('bookings', 'search', 'filterStatus'));
     }
 
+    public function customerBooking()
+    {
+        if (condition) {
+            # code...
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
