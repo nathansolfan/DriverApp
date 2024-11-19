@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('dashboard');
 // });
-
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
@@ -27,7 +26,6 @@ Route::resource('payments', PaymentController::class);
 Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
 // Calendar Route
-
 Route::get('/calendar', [BookingController::class, 'calendar'])->name('bookings.calendar');
 
 // CUSTOMER REGISTRATION ROUTE
@@ -38,3 +36,7 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Customer-specific routes
+Route::get('/customer/bookings', [BookingController::class, 'customerBookings'])->name('customer.bookings');
+Route::get('/customer/bookings', [BookingController::class, 'storeBooking'])->name('customer.bookings.store');

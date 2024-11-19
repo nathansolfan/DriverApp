@@ -26,6 +26,10 @@ class BookingController extends Controller
         // $bookings = Booking::with(['user', 'route'])->get();
         // return view('bookings.index', compact('bookings'));
 
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access man');
+        }
+
         $search = $request->input('search');
         $filterStatus = $request->input('status');
 
@@ -44,7 +48,6 @@ class BookingController extends Controller
 
         // FETCH Bookings
         $bookings = $query->with(['user', 'route'])->get();
-
         return view('bookings.index', compact('bookings', 'search', 'filterStatus'));
     }
 
