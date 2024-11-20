@@ -66,8 +66,8 @@ class BookingController extends Controller
 
     public function storeBooking(Request $request)
     {
-        $user = Auth::user();
-        if ($user && $user->role) {
+        $user = $request->user();
+        if ($user->role) {
             # code...
         }
 
