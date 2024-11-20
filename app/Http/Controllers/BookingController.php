@@ -7,6 +7,7 @@ use App\Models\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\UnauthorizedException;
 
 class BookingController extends Controller
 {
@@ -67,9 +68,23 @@ class BookingController extends Controller
     public function storeBooking(Request $request)
     {
         $user = $request->user();
-        if ($user->role) {
-            # code...
+        if ($user->role !== 'customer') {
+            return redirect()->route('dashboard')->with('error', 'Not Authorized');
         }
+
+        $validated = $request->validate([
+            'route_id' => 'required|exists:routes,id',
+            'seat_count' => 'required|integer|min:1',
+        ]);
+
+        Booking::create([
+            'user_id' => $user->id,
+            'route_id' => $validated['route_id'],
+            'seat_count' => $validated['seat_count'],
+            'status' => 'pending',
+        ]);
+
+        return redirect()->route('customer.bookings')->with('success', 'Booking created successfully');
 
     }
 
