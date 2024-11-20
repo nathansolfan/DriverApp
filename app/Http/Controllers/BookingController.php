@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -53,12 +54,25 @@ class BookingController extends Controller
 
     public function customerBooking()
     {
-        if (auth()->user()->role !== 'customer') {
+        $user = Auth::user();
+        if ($user && $user->role !== 'customer') {
             return redirect()->route('dashboard')->with('error', 'Unauthorized access');
         }
-        $bookings = Booking::where('user_id', auth()->id())->with('route')->get();
+        $bookings = Booking::where('user_id', $user->id)->with('route')->get();
         return view('customer.bookings.index', compact('bookings'));
     }
+
+    public function storeBooking(Request $request)
+    {
+        $user = Auth::user();
+        if ($user && $user->role) {
+            # code...
+        }
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
