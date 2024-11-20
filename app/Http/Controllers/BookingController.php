@@ -27,7 +27,9 @@ class BookingController extends Controller
         // $bookings = Booking::with(['user', 'route'])->get();
         // return view('bookings.index', compact('bookings'));
 
-        if (auth()->user()->role !== 'admin') {
+        $user = $request->user(); // This will give the authenticated user
+
+        if ($user->role !== 'admin') {
             return redirect()->route('dashboard')->with('error', 'Unauthorized access man');
         }
 
