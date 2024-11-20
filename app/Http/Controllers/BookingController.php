@@ -53,9 +53,11 @@ class BookingController extends Controller
 
     public function customerBooking()
     {
-        if (condition) {
-            # code...
+        if (auth()->user()->role !== 'customer') {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access');
         }
+        $bookings = Booking::where('user_id', auth()->id())->with('route')->get();
+        return view('customer.bookings.index', compact('bookings'));
     }
 
     /**
