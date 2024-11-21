@@ -44,4 +44,5 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Customer-specific routes
 Route::get('/customer/bookings', [BookingController::class, 'customerBookings'])->name('customer.bookings');
-Route::get('/customer/bookings', [BookingController::class, 'storeBooking'])->name('customer.bookings.store');
+Route::post('/customer/bookings', [BookingController::class, 'storeBooking'])->name('customer.bookings.store');
+Route::get('/customer/bookings/create', [BookingController::class, 'createCustomerBooking'])->name('customer.bookings.create'); // Route to create a booking form for customers
