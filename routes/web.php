@@ -18,6 +18,9 @@ Route::get('/', function () {
 
 // Admin Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Customer Dashboard
+Route::get('/customer/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
+
 
 // Define resource routes for routes, bookings, and payments for ADMIN
 Route::resource('routes', RouteController::class);

@@ -51,8 +51,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+
+            // Debug: Confirm that the user is authenticated
+            if (Auth::check()) {
+                // Redirect to the dashboard with a success message
+                return redirect()->route('customer.dashboard')->with('success', 'You are now logged in.');
+            } else {
+                dd('User is not authenticated after attempt');
+            }
         }
+
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
