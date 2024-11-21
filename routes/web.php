@@ -46,3 +46,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/customer/bookings', [BookingController::class, 'customerBookings'])->name('customer.bookings');
 Route::post('/customer/bookings', [BookingController::class, 'storeBooking'])->name('customer.bookings.store');
 Route::get('/customer/bookings/create', [BookingController::class, 'createCustomerBooking'])->name('customer.bookings.create'); // Route to create a booking form for customers
+
+// MANAGE USERS for Admin
+Route::post('/admin/promote/{id}', [DashboardController::class, 'promoteToAdmin'])->name('admin.promote');
