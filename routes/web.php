@@ -9,8 +9,12 @@ use App\Http\Controllers\RouteController;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 
-//Login/Register as Homepage
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+
+// Set home route to show the home view
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
 
 // Admin Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
