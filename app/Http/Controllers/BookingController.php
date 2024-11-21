@@ -54,7 +54,7 @@ class BookingController extends Controller
         return view('bookings.index', compact('bookings', 'search', 'filterStatus'));
     }
 
-    public function customerBooking()
+    public function customerBookings()
     {
         $user = Auth::user();
         if ($user && $user->role !== 'customer') {
