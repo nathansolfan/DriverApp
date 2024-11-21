@@ -43,29 +43,33 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    // Validate the login request
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    // Attempt to log the user in
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
-            // Debug: Confirm that the user is authenticated
-            if (Auth::check()) {
-                // Redirect to the dashboard with a success message
-                return redirect()->route('customer.dashboard')->with('success', 'You are now logged in.');
-            } else {
-                dd('User is not authenticated after attempt');
-            }
+        // Determine the user's role and redirect accordingly
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('dashboard')->with('success', 'You are now logged in as admin.');
+        } elseif ($user->role === 'customer') {
+            return redirect()->route('customer.dashboard')->with('success', 'You are now logged in as a customer.');
         }
-
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
     }
+
+    // Return back with error if login failed
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->onlyInput('email');
+}
+
 
     public function logout(Request $request)
     {
