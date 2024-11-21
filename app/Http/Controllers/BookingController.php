@@ -54,6 +54,7 @@ class BookingController extends Controller
         return view('bookings.index', compact('bookings', 'search', 'filterStatus'));
     }
 
+    // CUSTOMER BOOKINGS
     public function customerBookings()
     {
         $user = Auth::user();
@@ -64,6 +65,20 @@ class BookingController extends Controller
         return view('customer.bookings.index', compact('bookings'));
     }
 
+    public function createCustomerBooking()
+    {
+        $user = Auth::user();
+
+        // only custs can access it
+        if ($user && $user->role !== 'customer') {
+            return redirect()->route('dashboard')->with('error', 'Not authorized');
+        }
+
+        $routes = Route::all(); //load all routes to display in the form
+        return view('customer.bookings.create', compact('routes'));
+    }
+
+    // SAVE CUSTOMER BOOKINGS
     public function storeBooking(Request $request)
     {
         $user = $request->user();
