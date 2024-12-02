@@ -6,14 +6,16 @@
     <title>Create Booking</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-    <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold mb-8 text-center">Create a New Booking</h1>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
 
-        <!-- Error Message Section -->
+    <!-- Form Container -->
+    <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Create a New Booking</h1>
+
+        <!-- Error Messages -->
         @if ($errors->any())
-            <div class="bg-red-100 text-red-800 p-4 mb-4 rounded-md">
-                <ul class="list-disc pl-5">
+            <div class="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 mb-6">
+                <ul class="list-disc list-inside">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -22,24 +24,38 @@
         @endif
 
         <!-- Booking Form -->
-        <form action="{{ route('customer.bookings.store') }}" method="POST">
+        <form action="{{ route('customer.bookings.store') }}" method="POST" class="space-y-6">
             @csrf
-            <div class="mb-4">
+
+            <!-- Route Selection -->
+            <div>
                 <label for="route_id" class="block text-sm font-medium text-gray-700">Select Route:</label>
-                <select id="route_id" name="route_id" class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                <select id="route_id" name="route_id" required
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <option value="" disabled selected>Choose a route</option>
                     @foreach ($routes as $route)
-                        <option value="{{ $route->id }}">{{ $route->pickup_location }} to {{ $route->dropoff_location }}</option>
+                        <option value="{{ $route->id }}">
+                            {{ $route->pickup_location }} to {{ $route->dropoff_location }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="mb-4">
+            <!-- Number of Seats -->
+            <div>
                 <label for="seat_count" class="block text-sm font-medium text-gray-700">Number of Seats:</label>
-                <input type="number" id="seat_count" name="seat_count" min="1" required class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                <input type="number" id="seat_count" name="seat_count" min="1" required
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter number of seats">
             </div>
 
-            <button type="submit" class="bg-green-600 text-white w-full py-2 rounded-md hover:bg-green-700">Create Booking</button>
+            <!-- Submit Button -->
+            <div class="text-right">
+                <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:ring-2 focus:ring-green-300">
+                    Create Booking
+                </button>
+            </div>
         </form>
     </div>
+
 </body>
 </html>
